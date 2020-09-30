@@ -20,42 +20,19 @@ def predict():
     if request.method == 'POST':
         
         batting_team = request.form['batting-team']
-        if batting_team == 'Chennai Super Kings':
-            temp_array = temp_array + [1,0,0,0,0,0,0,0]
-        elif batting_team == 'Delhi Daredevils':
-            temp_array = temp_array + [0,1,0,0,0,0,0,0]
-        elif batting_team == 'Kings XI Punjab':
-            temp_array = temp_array + [0,0,1,0,0,0,0,0]
-        elif batting_team == 'Kolkata Knight Riders':
-            temp_array = temp_array + [0,0,0,1,0,0,0,0]
-        elif batting_team == 'Mumbai Indians':
-            temp_array = temp_array + [0,0,0,0,1,0,0,0]
-        elif batting_team == 'Rajasthan Royals':
-            temp_array = temp_array + [0,0,0,0,0,1,0,0]
-        elif batting_team == 'Royal Challengers Bangalore':
-            temp_array = temp_array + [0,0,0,0,0,0,1,0]
-        elif batting_team == 'Sunrisers Hyderabad':
-            temp_array = temp_array + [0,0,0,0,0,0,0,1]
-            
-            
-        bowling_team = request.form['bowling-team']
-        if bowling_team == 'Chennai Super Kings':
-            temp_array = temp_array + [1,0,0,0,0,0,0,0]
-        elif bowling_team == 'Delhi Daredevils':
-            temp_array = temp_array + [0,1,0,0,0,0,0,0]
-        elif bowling_team == 'Kings XI Punjab':
-            temp_array = temp_array + [0,0,1,0,0,0,0,0]
-        elif bowling_team == 'Kolkata Knight Riders':
-            temp_array = temp_array + [0,0,0,1,0,0,0,0]
-        elif bowling_team == 'Mumbai Indians':
-            temp_array = temp_array + [0,0,0,0,1,0,0,0]
-        elif bowling_team == 'Rajasthan Royals':
-            temp_array = temp_array + [0,0,0,0,0,1,0,0]
-        elif bowling_team == 'Royal Challengers Bangalore':
-            temp_array = temp_array + [0,0,0,0,0,0,1,0]
-        elif bowling_team == 'Sunrisers Hyderabad':
-            temp_array = temp_array + [0,0,0,0,0,0,0,1]
-            
+	bowling_team = request.form['bowling-team']
+	
+	team_list = ['Chennai Super Kings', 'Delhi Daredevils' ,'Kings XI Punjab', 'Kolkata Knight Riders', 'Mumbai Indians', 'Rajasthan Royals', 'Royal Challengers Bangalore', 'Sunrisers Hyderabad']
+	batting_temp_array = [0, 0, 0, 0, 0, 0, 0, 0]
+	bowling_temp_array = [0, 0, 0, 0, 0, 0, 0, 0]
+	
+	for i in len(team_list):
+		if batting_team == team_list[i]:
+			batting_temp_array[i] = 1
+		if bowling_team == team_list[i]:
+			bowling_temp_array[i] = 1
+	temp_array = temp_array + batting_temp_array
+	temp_array = temp_array + bowling_temp_array           
             
         overs = float(request.form['overs'])
         runs = int(request.form['runs'])
